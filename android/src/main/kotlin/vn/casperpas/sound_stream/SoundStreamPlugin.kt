@@ -70,7 +70,7 @@ public class SoundStreamPlugin : FlutterPlugin,
     private var mPlayerSampleRate = 16000 // 16Khz
     private var mPlayerBufferSize = 10240
     private var mPlayerFormat: AudioFormat = AudioFormat.Builder()
-            .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+            .setEncoding(AudioFormat.ENCODING_MP3)
             .setChannelMask(AudioFormat.CHANNEL_OUT_MONO)
             .setSampleRate(mPlayerSampleRate)
             .build()
@@ -301,12 +301,12 @@ public class SoundStreamPlugin : FlutterPlugin,
         mPlayerSampleRate = call.argument<Int>("sampleRate") ?: mPlayerSampleRate
         debugLogging = call.argument<Boolean>("showLogs") ?: false
         mPlayerFormat = AudioFormat.Builder()
-                .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+                .setEncoding(AudioFormat.ENCODING_MP3)
                 .setChannelMask(AudioFormat.CHANNEL_OUT_MONO)
                 .setSampleRate(mPlayerSampleRate)
                 .build()
 
-        mPlayerBufferSize = AudioTrack.getMinBufferSize(mPlayerSampleRate, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT)
+        mPlayerBufferSize = AudioTrack.getMinBufferSize(mPlayerSampleRate, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_MP3)
 
         if (mAudioTrack?.state == AudioTrack.STATE_INITIALIZED) {
             mAudioTrack?.release()
